@@ -3,7 +3,5 @@
 *.swp
 *.swo
 *.swn
-html/ 
-latex/ 
 *.html
 *.tex
