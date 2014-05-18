@@ -3,8 +3,13 @@
 #ifndef CHARGE_H
 #define CHARGE_H
 
-
+/** 
+     * Charge provides a comprehensive simulation of charges, defined in couloumbs. 
+     * It is the main class which is simulated. 
+     * this only provides the functionality, another class is going to provide the graphics. 
+     */ 
 class Charge{      //A FIXED CHARGE 
+    
     protected:
         long double charge; //for accuracy, microcouloumbs
         double pos_x; 
