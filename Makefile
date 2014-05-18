@@ -1,19 +1,25 @@
 CC=g++
-CFLAGS= -g -c -Wall
+CFLAGS= -g -c 
 
-SOURCES=vectors.cpp charges.cpp
-TESTS=vector_test.cpp 
+SOURCES=vectors.cpp charges.cpp iterativeField.cpp
+TESTS=vtest.cpp ctest.cpp itest.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-OBJTEST=$(TESTS:.cpp=.o)
-EXECUTABLES=
 
-all: $(SOURCES) $(OBJECTS)
 
-vectors: vectors.o 
-	$(CC) $(OBJECTS) $@
+all: charges.o vectors.o iterativeField.o
+tests: itest vtest ctest
 
-charges: charges.o
-    $(CC) $(OBJECTS) $@ 
+itest: $(OBJECTS) itest.cpp
+	$(CC) $(OBJECTS) itest.cpp -o itest
+
+vtest: $(OBJECTS) vtest.cpp
+	$(CC) $(OBJECTS) vtest.cpp -o vtest
+
+ctest: $(OBJECTS) ctest.cpp
+	$(CC) $(OBJECTS) ctest.cpp -o ctest
 
 .cpp.o: 
 	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm *.o $(TESTS:.cpp=)

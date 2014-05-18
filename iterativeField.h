@@ -9,7 +9,6 @@ class IterativeField{
     Charge ** cList;  
     int size; 
     void instantiate_vectors(); 
-    int ** operating_stack; 
     public: 
         IterativeField(Charge charges[], int Size, int accuracy); 
         void nextIteration();  

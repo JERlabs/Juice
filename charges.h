@@ -5,27 +5,36 @@
 
 
 class Charge{      //A FIXED CHARGE 
-    long double charge; //for accuracy, microcouloumbs
-    double pos_x; 
-    double pos_y;
+    protected:
+        long double charge; //for accuracy, microcouloumbs
+        double pos_x; 
+        double pos_y;
+        double mass; 
+        int dynamic ;  
     public: 
         Charge(); 
         Charge(const Charge& c);
         Charge(double pos_X, double pos_Y, long double charge) ; 
         Charge(double pos_X, double pos_Y);
         Charge (double Sharge); 
- 
+        Charge(double pos_X, double pos_Y, long double Sharge, double mass);  
         Vector fAtPoint(Vector relLocation); 
         double fAtPoint(double distance); 
 
-        Vector fOnCharge(Charge c, Vector relPosition); /*This gives the \
+        Vector fOnCharge(Charge c); /*This gives the \
                                                        magnitude and angle \
                                                        of the force on charge.*/ 
         long double fOnCharge(Charge c, double distance);  //Just Magnitude 
         static long double conv_to_uc(Charge c); 
         static long double conv_to_c(Charge c); 
         Vector getP();  
-        long double getC(); 
+        long double getC();
+        void changeMode(); 
+        int getMode();
+        void update(double timelapse); 
+        Vector force; 
+        void setMass(double m);
+        double getMass();  
 };
 
 #endif

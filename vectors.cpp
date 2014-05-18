@@ -66,9 +66,10 @@ double Vector::getY(){
 }; 
 
 double Vector::getA(){ 
+    this->calcNewAngle(); 
     return this-> angle; 
 }
 
 double Vector::getM(){
-    return sqrt(this->mag_x * this->mag_x + this-> mag_y + this-> mag_y); 
+    return sqrt(this->mag_x * this->mag_x + this-> mag_y * this-> mag_y); 
 }

@@ -7,7 +7,6 @@
 IterativeField::IterativeField(Charge * charges, int Size, int accuracy){ 
     cList = &charges;
     size = Size; 
-    instantiate_vectors(); 
 }; 
 
 void IterativeField::nextIteration(){
@@ -21,11 +20,8 @@ void IterativeField::nextIteration(){
 Vector IterativeField::getTotalForce(int c){ 
     Vector v = Vector(); 
     for(int i = 0; i < size; i++){ 
-        if(i == c){ 
-        }
-        else { 
-            v = v +Vector(((*(this->cList))[i]).fOnCharge(((*(this->cList)))[c],
-             ((*(this->cList)))[c].getP() - ((*(this->cList)))[i].getP())); 
+        if(i != c){
+            v = v + (*(this -> cList))[i].fOnCharge((*(this->cList))[c]); 
         }
     }
     return v; 
