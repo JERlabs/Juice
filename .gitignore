@@ -5,3 +5,5 @@
 *.swn
 html/ 
 latex/ 
+*.html
+*.tex
