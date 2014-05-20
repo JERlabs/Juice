@@ -11,7 +11,7 @@ Vector::Vector():
 /** Copy Constructor.
  *  All Attributes are transferred over. Isn't the most efficient, but works. '
  */
-Vector::Vector(Vector * copy): 
+Vector::Vector(Vector * copy /**< Vector to get valuse from. */ ): 
     mag_x(copy->mag_x), 
     mag_y(copy->mag_y), 
     angle(copy->angle) {}; 
@@ -21,7 +21,7 @@ Vector::Vector(Vector * copy):
  * It will not instantiate total magnitudes, but will instantiate the angle of the vector. 
  * A raw magnitude is available. 
  */ 
-Vector::Vector(double magX, double magY): 
+Vector::Vector(double magX /**< The X Magnitude */ , double magY /**< The Y magnitude*/): 
     mag_x(magX), 
     mag_y(magY) {
     
@@ -31,7 +31,7 @@ Vector::Vector(double magX, double magY):
  * This has no advantage over the privous construcotr, Vector(double, double). 
  * There is no reason why you shoould use this as opposed to the other one, the other one is easier. 
  */ 
-Vector::Vector(double magX, double magY, double Angle): 
+Vector::Vector(double magX /**< X magnitude */ , double magY /**< Y mangitude */ , double Angle /**< Angle. Please, don't use this. */ : 
     mag_x(magX), 
     mag_y(magY), 
     angle(Angle) { 
@@ -44,7 +44,7 @@ Vector::Vector(double magX, double magY, double Angle):
  * But not supported yet. 
  * Use 1 or 0 for now. 
  */ 
-Vector::Vector(double mag, double Angle, int is_magnitude): 
+Vector::Vector(double mag /**< Total magnitude of the vector. */ , double Angle /**< Angle, in Radians, of the vector. */ , int is_magnitude /**indicator code. */ ): 
     angle(Angle)
     {
     if(angle == 0){
