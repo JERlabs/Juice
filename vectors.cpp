@@ -27,16 +27,6 @@ Vector::Vector(double magX /**< The X Magnitude */ , double magY /**< The Y magn
     
     angle = magY == 0 ? 0 : atan(magY/ magX); 
 }; 
-/** Full construcotr. 
- * This has no advantage over the privous construcotr, Vector(double, double). 
- * There is no reason why you shoould use this as opposed to the other one, the other one is easier. 
- */ 
-Vector::Vector(double magX /**< X magnitude */ , double magY /**< Y mangitude */ , double Angle /**< Angle. Please, don't use this. */ : 
-    mag_x(magX), 
-    mag_y(magY), 
-    angle(Angle) { 
-
-};
 /** Radian Construcotr.  
  * Constructs Vector as a Radian. Magnitude is the total magnitude of the Vector, and the angle is given in Radians. 
  * The third variable doesn't do ANYTHING yet, butwill eventually allow for more complicated codes, such as 1 = radian constructor,

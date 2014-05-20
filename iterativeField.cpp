@@ -3,7 +3,7 @@
  * There is only meant to be one of these objects at ANY TIME. 
  * Instantiates the chargesList (cList) and the size of the list (for convience)
  */ 
-IterativeField::IterativeField(Charge * charges /**< list of all charges */ , int Size /**< number of all charges */  int accuracy /**< timelapse per frame */){ 
+IterativeField::IterativeField(Charge * charges /**< list of all charges */ , int Size /**< number of all charges */, int accuracy /**< timelapse per frame */){ 
     cList = &charges;
     size = Size; 
 }; 

@@ -22,7 +22,6 @@ class Vector{
         Vector(); 
         Vector(Vector * copy); 
         Vector(double magX, double magY); 
-        explicit Vector(double magX, double magY, double Angle); //DON'T USE 
         explicit Vector(double mag, double Angle, int is_magnitude); 
         
         Vector operator+(Vector v); 
