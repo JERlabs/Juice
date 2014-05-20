@@ -58,7 +58,7 @@ Charge::Charge(double Sharge /**< Charge of the particle */ ): mass(0.0), dynami
  * returns a Vector, with the force at a relative location to this one. 
  * The relative location is given by the reLocation parameter. 
  */ 
-Vector Charge::fAtPoint(Vector relLocation){
+Vector Charge::fAtPoint(Vector relLocation /**< The location of the point relative to the charge. */){
     double magnitude = relLocation.getM(); 
     double strength = K * this->charge /(magnitude * magnitude); 
     return Vector(strength, relLocation.getA(), 1 ); 
@@ -66,14 +66,14 @@ Vector Charge::fAtPoint(Vector relLocation){
 /** Returns field strength at a distance away. 
  * Returns the field strength at a point a certain distance away. 
  */ 
-double Charge::fAtPoint(double distance){
+double Charge::fAtPoint(double distance /**< The net distance of the charge. If the Vector relLocation for this is 3,4, the distance should be 5. */){
     return K * (this-> charge) / (distance * distance); 
 };
 /** Force felt by Charge c because of this charge. 
  * Returns the force exerted by this charge on charge c. Perhaps the most important function in this program. 
  */ 
 
-Vector Charge::fOnCharge(Charge c){
+Vector Charge::fOnCharge(Charge c /** Charge to determine force on. This charge MUST have a position. this is not error handled yet. */){
     Vector r = (c.getP() - this -> getP() ); 
     double f = K * (c.charge) * (this -> charge) / 
         (r.getM()* r.getM()); 
@@ -86,46 +86,46 @@ Vector Charge::fOnCharge(Charge c){
  * This could be used in hypotheticals, in the calculator. 
  */ 
 
-long double Charge::fOnCharge(Charge c, double distance){ 
+long double Charge::fOnCharge(Charge c /**< Same as the other fOnCharge */ , double distance /** Give this for less work, and to get a double instead of vector as return value */ ){ 
     return K * (this->charge) * (c.charge) / (distance * distance); 
 }; 
 /** 
- * \brief convert from couloumbs to microcouloumbs. 
+ *  convert from couloumbs to microcouloumbs. 
  */ 
 
-static long double conv_to_uc(Charge c){
+static long double conv_to_uc(Charge c /**< The charge you want to be converted. Should be instantiated by Charge(double) */ ){
     return c.getC() * UC_IN_C;
 }; 
 /** 
- * \brief convert from microcouloumbs to coulombs 
+ * convert from microcouloumbs to coulombs 
  */ 
-static long double conv_to_c(Charge c){
+static long double conv_to_c(Charge c /**< The charge you want converted. Should be instantiated by Charge(double) */ ){
     return c.getC()  / UC_IN_C; 
 }; 
 
 /** 
- * \brief get the position of the charge
+ * get the position of the charge
  */ 
 Vector Charge::getP(){ 
     Vector v = Vector(this -> pos_x, this -> pos_y); 
     return v; 
 }
 /** 
- * \brief get the charge itself 
+ * get the charge itself 
  */ 
 long double Charge::getC() {
     return this->charge; 
 };
 
 /** 
- * \brief toggle from dynamic to static mode 
+ * toggle from dynamic to static mode 
  */ 
 void Charge::changeMode(){ 
     (this->dynamic )= (this->dynamic == 0) ? 1 : 0; 
 }
 
 /** 
- * \brief determine the mode 
+ * determine the mode 
  */ 
 int Charge::getMode(){ 
     return this->dynamic; 
@@ -137,7 +137,7 @@ int Charge::getMode(){
  * The paramater timelapse gives the time over which the force acts
  * uses the formula s = .5at^2, a = f/m 
  */
-void Charge::update(double timelapse ){ 
+void Charge::update(double timelapse /**< The timelapse you want to update teh charge over. Larger timelapse = less accuracy. */  ){ 
     if(!( this -> dynamic > 0)){
     }else{
         this-> pos_x += ((this->force).getX() / mass * timelapse*timelapse)/2 ; 
@@ -145,13 +145,13 @@ void Charge::update(double timelapse ){
     }
 }
 /** 
- * \brief set the mass 
+ * set the mass 
  */ 
-void Charge::setMass(double m) { 
+void Charge::setMass(double m /**< The new mass of the charge */ ) { 
     this -> mass = m; 
 }
 /** 
- * \brief get the mass 
+ * get the mass 
  */ 
 double Charge::getMass() { 
     return this->mass;  
