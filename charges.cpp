@@ -13,7 +13,7 @@ Charge::Charge():
 /** A copy Constructor.  
  *  All values EXCEPT THE FORCE are copied over. 
  */ 
-Charge::Charge(const Charge& c):
+Charge::Charge(const Charge& c /**< Charge to copy over */):
     charge(c.charge), 
     pos_x(c.pos_x), 
     dynamic(0), pos_y(c.pos_y), 
@@ -23,7 +23,7 @@ Charge::Charge(const Charge& c):
  * Complete constructor which instantiates all private values.
  * Defaults state to dynamic  
  */ 
-Charge::Charge(double pos_X, double pos_Y, long double Sharge, double Mass): 
+Charge::Charge(double pos_X /**< x location of the charge */ , double pos_Y/**< y location of the charge */ , long double Sharge/**< actual charge of the charge */ , double Mass/**< mass of the charge (only needed if you are working with a dynamic charge) */ ): 
     charge(Sharge), 
     pos_x(pos_X), 
      dynamic(1),pos_y(pos_Y),
@@ -32,7 +32,7 @@ Charge::Charge(double pos_X, double pos_Y, long double Sharge, double Mass):
 /** Constructor for static objects, no mass required. 
  *  This is useful if you just want a held-in-place charge. 
  */ 
-Charge::Charge(double pos_X, double pos_Y, long double Sharge ): 
+Charge::Charge(double pos_X/**< x position of the charge */ , double pos_Y /**< y position fo the charge */ , long double Sharge /**< actual charge of the charge */ ): 
     charge(Sharge), 
     pos_x(pos_X), 
      dynamic(0),pos_y(pos_Y),
@@ -41,7 +41,7 @@ Charge::Charge(double pos_X, double pos_Y, long double Sharge ):
 /** A placeholding charge. 
  *  placeholding charge. No Valid use imaginable.
  */ 
-Charge::Charge(double pos_X, double pos_Y):
+Charge::Charge(double pos_X /**< x position of the charge */ , double pos_Y/**< y position of the charge */ ):
     charge(0.0), 
     pos_x(pos_X),  dynamic(0),
     pos_y(pos_Y), 
@@ -52,7 +52,7 @@ Charge::Charge(double pos_X, double pos_Y):
 /** Nothing except for a charge.  
  * just a charge, no position, no mass. Used for conversions most likely.  
  */ 
-Charge::Charge(double Sharge): mass(0.0), dynamic(0),pos_x(0.0), pos_y(0.0), charge(Sharge) {}; 
+Charge::Charge(double Sharge /**< Charge of the particle */ ): mass(0.0), dynamic(0),pos_x(0.0), pos_y(0.0), charge(Sharge) {}; 
 
 /** Gives Vector of field strength at relative location. 
  * returns a Vector, with the force at a relative location to this one. 
