@@ -12,10 +12,10 @@ class Charge{      //A FIXED CHARGE
     
     protected:
         long double charge; //for accuracy, microcouloumbs
-        double pos_x; 
-        double pos_y;
-        double mass; 
-        int dynamic ;  
+        double pos_x; //!< Holds the X-Coordinate
+        double pos_y; //!< Holds the Y-Coordinate
+        double mass;  //!< Holds the mass
+        int dynamic ; /**< This is the state; either 1 or 0 depending on if its static or dynamic. */
     public: 
         Charge(); 
         Charge(const Charge& c);
@@ -37,7 +37,7 @@ class Charge{      //A FIXED CHARGE
         void changeMode(); 
         int getMode();
         void update(double timelapse); 
-        Vector force; 
+        Vector force; /**< Holds the temporary force and is used by void update(double) */ 
         void setMass(double m);
         double getMass();  
 };
