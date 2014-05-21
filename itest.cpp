@@ -41,4 +41,28 @@ int main(){
     std::cout << "[ INFO ] POSITIONS... "<< c->getP().getX() << " " << c->getP().getY() << std::endl; 
 
     std::cout <<"Charge Test Complete" <<std::endl; 
+
+    //Begin iterative field test... challenging! 
+    
+    std::cout <<"Testing the Iterative Field... " <<std::endl; 
+    
+    Charge clist[2] = {*c, *d}; 
+    if(c -> getMode() == 0)
+        c->changeMode(); 
+    if(d -> getMode() == 0)
+        d->changeMode(); 
+    if(c -> getMass() == 0)
+        c -> setMass(1.0); 
+    if(d -> getMass() == 0 )
+        d -> setMass(1.0); 
+    IterativeField * field = new IterativeField(clist, 2, 0.01);
+    field->nextIteration(); 
+    
+    std::cout<< c -> getP().getX() <<" "<< c -> getP().getY() << std::endl; 
+    std::cout<< d -> getP().getX() <<" "<< d -> getP().getY() << std::endl; 
+    
+    field -> nextIteration(); 
+    std::cout<< c -> getP().getX() <<" "<< c -> getP().getY() << std::endl; 
+    std::cout<< d -> getP().getX() <<" "<< d -> getP().getY() << std::endl; 
+
 }

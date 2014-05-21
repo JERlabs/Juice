@@ -6,6 +6,7 @@
 IterativeField::IterativeField(Charge * charges /**< list of all charges */ , int Size /**< number of all charges */, int accuracy /**< timelapse per frame */){ 
     cList = &charges;
     size = Size; 
+    tlapse = accuracy; 
 }; 
 
 /** Calculates the next iteration of all values. 
@@ -20,6 +21,11 @@ void IterativeField::nextIteration(){
           (*(this->cList))[i].force  = this -> getTotalForce(i) ; 
         };
     };
+    for(int i=0; i< size ; i ++){ 
+         if((*(this->cList))[i].getMode() != 0){
+            (*(this->cList))[i].update(this -> tlapse); 
+        }
+    }
 }; 
 /** Calculates the total force a charge
  *  It uses the parameter as a base, and calculates total force based on the parameter. 
