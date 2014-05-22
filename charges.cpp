@@ -138,7 +138,7 @@ int Charge::getMode(){
  * uses the formula s = .5at^2, a = f/m 
  */
 void Charge::update(double timelapse /**< The timelapse you want to update teh charge over. Larger timelapse = less accuracy. */  ){ 
-    if(!( this -> dynamic > 0)){
+    if(this -> getMode() == 0){
     }else{
         this-> pos_x += ((this->force).getX() / mass * timelapse*timelapse)/2 ; 
         this-> pos_y += ((this->force).getY() / mass * timelapse*timelapse)/2 ; 
