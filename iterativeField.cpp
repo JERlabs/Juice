@@ -1,9 +1,12 @@
 #include "iterativeField.h"
+#include <iostream>
 /** Creates the Iterative Field. 
  * There is only meant to be one of these objects at ANY TIME. 
  * Instantiates the chargesList (cList) and the size of the list (for convience)
  */ 
-IterativeField::IterativeField(Charge * charges /**< list of all charges */ , int Size /**< number of all charges */, int accuracy /**< timelapse per frame */){ 
+IterativeField::IterativeField(Charge * charges /**< list of all charges */ , 
+                               int Size /**< number of all charges */, 
+                               int accuracy /**< timelapse per frame */){ 
     cList = &charges;
     size = Size; 
     tlapse = accuracy; 
@@ -16,9 +19,12 @@ IterativeField::IterativeField(Charge * charges /**< list of all charges */ , in
  *  As of 5/19/2014, it does not provide any error handling, so be careful! 
  */ 
 void IterativeField::nextIteration(){
+    std::cout << "HI" << std::endl; 
     for(int i= 0; i < size ; i++ ){ 
+        std::cout << "ITERATION: " << i << std::endl; 
         if((*(this->cList))[i].getMode() != 0){
           (*(this->cList))[i].force  = this -> getTotalForce(i) ; 
+          std::cout << "DOING SOMETHING " << std::endl; 
         };
     };
     for(int i=0; i< size ; i ++){ 
@@ -37,7 +43,25 @@ Vector IterativeField::getTotalForce(int c /**< The index of the charge in cList
     for(int i = 0; i < size; i++){ 
         if(i != c){
             v = v + (*(this -> cList))[i].fOnCharge((*(this->cList))[c]); 
+            std::cout << v.getM() << std::endl; 
         }
     }
     return v; 
+}
+/** Returns a specific charge 
+ *  The input parameter is the charge you want to input 
+ *  It outputs a pointer to the charge you want 
+ *  WARNING: DO NOT MODIFY YOUR CHARGE BOI OR ELSE BAD STUFF WILL HAPPEN 
+ *  This is a feature, you can modify a charge like this. 
+ *  If you don't like it, fight me. 
+ */ 
+Charge * IterativeField::getSpecificCharge(int whichCharge){ 
+    return ((this->cList)[whichCharge]); 
+}
+
+/** Spews the entire cList. 
+ * Feature: you can modify it. 
+ */
+Charge ** IterativeField::getEverything(){ 
+    return this->cList; 
 }

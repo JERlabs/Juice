@@ -13,6 +13,10 @@ class IterativeField{
         IterativeField(Charge charges[], int Size, int accuracy); 
         void nextIteration();  
         Vector getTotalForce(int c); 
+
+        //Access Members
+        Charge * getSpecificCharge(int whichCharge /**< This charge SHOULD be the one that you want, in the order you initialized. */); 
+        Charge ** getEverything(); 
 }; 
 
 #endif 
