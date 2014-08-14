@@ -23,10 +23,10 @@ class Charge{      //A FIXED CHARGE
         Charge(double pos_X, double pos_Y);
         Charge (double Sharge); 
         Charge(double pos_X, double pos_Y, long double Sharge, double mass);  
-        Vector fAtPoint(Vector relLocation); 
+        Vector fAtPoint(Vector * relLocation); 
         double fAtPoint(double distance); 
 
-        Vector fOnCharge(Charge c); /*This gives the \
+        Vector fOnCharge(Charge * c); /*This gives the \
                                                        magnitude and angle \
                                                        of the force on charge.*/ 
         long double fOnCharge(Charge c, double distance);  //Just Magnitude 
@@ -39,7 +39,9 @@ class Charge{      //A FIXED CHARGE
         void update(double timelapse); 
         Vector force; /**< Holds the temporary force and is used by void update(double) */ 
         void setMass(double m);
-        double getMass();  
+        double getMass();
+        //Debug 
+        void spewEverything();
 };
 
 #endif

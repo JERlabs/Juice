@@ -1,12 +1,12 @@
 CC=g++
-CFLAGS= -g -c 
+CFLAGS= -g -c
 
-SOURCES=vectors.cpp charges.cpp iterativeField.cpp
+SOURCES=vectors.cpp charges.cpp iterativeField.cpp Point.cpp
 TESTS=vtest.cpp ctest.cpp itest.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 
-all: charges.o vectors.o iterativeField.o
+all: charges.o vectors.o iterativeField.o Point.o
 tests: itest vtest ctest
 
 itest: $(OBJECTS) itest.cpp
@@ -18,7 +18,7 @@ vtest: $(OBJECTS) vtest.cpp
 ctest: $(OBJECTS) ctest.cpp
 	$(CC) $(OBJECTS) ctest.cpp -o ctest
 
-.cpp.o: 
+.cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:

@@ -12,14 +12,14 @@ void status(string a){
     cout << "[STATUS]\t" << a << endl; 
 }
 void info(string a = ""){ 
-    cout << "[ INFO ]\t" << a << endl; 
+    cout << "[ INFO ]\t" << a << '\t'; 
 }
 void debug(string a){ 
     cout << "[DEBUG ]\t" << a << endl; 
 }
 
 int main(){ 
-   //Vector Tests (Very Basic)
+/*   //Vector Tests (Very Basic)
     cout << "Testing Vectors... " << endl; 
     status("CREATING NEW VECTOR... Vector(double, double)"); 
     Vector v = new Vector(3.0, 4.0); 
@@ -69,15 +69,32 @@ int main(){
 
     cout <<"Charge Test Complete" <<endl; 
     delete c; 
-    delete d; 
+    delete d; */
     //Begin iterative field test... challenging! 
 
     Charge * e = new Charge(0.0, 0.0, 1.0, 1.0); 
     Charge * f = new Charge(1.0, 0.0, -1.0, 1.0);
+    
+    info("Position of charge e");
+    cout << (e ->getP()).getX() << "\t" << (e->getP()).getY() <<endl; 
+    info("Position of charge f");
+    cout << (f ->getP()).getX() << "\t" << (f->getP()).getY() <<endl; 
 
-    e -> changeMode(); 
-    f -> changeMode(); 
+    info("Charge of Charge e"); 
+    cout << e -> getC() << endl; 
+    info("Charge of Charge f"); 
+    cout << f -> getC() << endl; 
 
+    info("State of Charge e");
+    cout << e -> getMode() << endl; 
+    info("State of Charge f"); 
+    cout << f -> getMode() << endl; 
+    //e -> changeMode(); 
+   // f -> changeMode(); 
+    info("State of Charge e, post-change");
+    cout << e -> getMode() << endl; 
+    info("State of Charge f, post-change"); 
+    cout << f -> getMode() << endl; 
     Charge cList[2] = {*e, *f};     
    
     IterativeField * g = new IterativeField(cList, 2, 0.001); 
@@ -85,10 +102,14 @@ int main(){
     g -> nextIteration(); 
     status("OMG DYING"); 
     e = g->getSpecificCharge(0);
-    f = g->getSpecificCharge(1); 
-
+    f = g->getSpecificCharge(1);
+    info("State of Charge E, post iter"); 
+    cout << e -> getMode() << endl; 
+    info("State of Charge F, post iter"); 
+    cout << e-> getMode() << endl; 
     info("Position of charge e");
     cout << (e ->getP()).getX() << "\t" << (e->getP()).getY() <<endl; 
-
+    info("Position of charge f");
+    cout << (f ->getP()).getX() << "\t" << (f->getP()).getY() <<endl; 
 
 }

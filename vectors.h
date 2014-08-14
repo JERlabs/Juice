@@ -14,21 +14,24 @@
  * The magnitude is reccalculated whenever called. 
  */ 
 class Vector{
-    double mag_x; /**< hodls the x magnitude of all vectors */  
-    double mag_y; /**< holds the x-magnitude of all vectors.*/ 
-    double angle; /**< holds the angle for all vectors. This is semi-redundant. */ 
-    void calcNewAngle(); 
+    protected: 
+        double mag_x; /**< hodls the x magnitude of all vectors */  
+        double mag_y; /**< holds the x-magnitude of all vectors.*/ 
+        double angle; /**< holds the angle for all vectors. This is semi-redundant. */ 
     public:  
         Vector(); 
         Vector(Vector * copy); 
         Vector(double magX, double magY); 
         explicit Vector(double mag, double Angle, int is_magnitude); 
+    
+        virtual Vector operator+(Vector v); 
+        virtual Vector operator-(Vector v); 
         
-        Vector operator+(Vector v); 
-        Vector operator-(Vector v); 
-        double getX();
-        double getY(); 
-        double getA(); 
-        double getM(); 
+        virtual double getX();
+        virtual double getY(); 
+        virtual double getA(); 
+        virtual double getM(); 
+    private: 
+        void calcNewAngle(); 
 };
 #endif

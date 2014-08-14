@@ -1,4 +1,5 @@
 #include "charges.h"
+#include <iostream> 
 /** An empty constructor. 
  *  An empty constructor. Don't know why you would use this
  *  It initializes ALL values as 0. So, if you wanted a placeholder, 
@@ -58,10 +59,12 @@ Charge::Charge(double Sharge /**< Charge of the particle */ ): mass(0.0), dynami
  * returns a Vector, with the force at a relative location to this one. 
  * The relative location is given by the reLocation parameter. 
  */ 
-Vector Charge::fAtPoint(Vector relLocation /**< The location of the point relative to the charge. */){
-    double magnitude = relLocation.getM(); 
+Vector Charge::fAtPoint(Vector * relLocation /**< The location of the point relative to the charge. */){
+    double magnitude = relLocation -> getM();
+
     double strength = K * this->charge /(magnitude * magnitude); 
-    return Vector(strength, relLocation.getA(), 1 ); 
+    
+    return Vector(strength, relLocation -> getA(), 1 ); 
 };
 /** Returns field strength at a distance away. 
  * Returns the field strength at a point a certain distance away. 
@@ -73,9 +76,9 @@ double Charge::fAtPoint(double distance /**< The net distance of the charge. If 
  * Returns the force exerted by this charge on charge c. Perhaps the most important function in this program. 
  */ 
 
-Vector Charge::fOnCharge(Charge c /** Charge to determine force on. This charge MUST have a position. this is not error handled yet. */){
-    Vector r = (c.getP() - this -> getP() ); 
-    double f = K * (c.charge) * (this -> charge) / 
+Vector Charge::fOnCharge(Charge * c /** Charge to determine force on. This charge MUST have a position. this is not error handled yet. */){
+    Vector r = (c -> getP() - this -> getP() ); 
+    double f = K * (c -> charge) * (this -> charge) / 
         (r.getM()* r.getM()); 
     return Vector(f, r.getA(), 1 ); 
 }; 
@@ -155,4 +158,10 @@ void Charge::setMass(double m /**< The new mass of the charge */ ) {
  */ 
 double Charge::getMass() { 
     return this->mass;  
+}
+
+//Debug 
+void Charge::spewEverything(){ 
+    std::cout << "Charge Value\t" << this -> charge << std::endl; 
+    std::cout << "Charge position\t" << "x" << this -> pos_x << "\t y" << this -> pos_y << std::endl; 
 }
